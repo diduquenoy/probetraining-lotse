@@ -74,4 +74,4 @@ Mit Supabase: `.env.example` nach `.env.local` kopieren und URL und Key eintrage
 
 ## Stack
 
-React 19, TypeScript, Vite, React Router, Zod, Supabase (Postgres, Row Level Security, Auth, Edge Functions), Claude API (Haiku 4.5, Structured Outputs), Vitest und Testing Library, Deployment auf Vercel.
+React 19, TypeScript, Vite, React Router, Zod, Supabase (Postgres, Row Level Security, Auth, Edge Functions), Claude API (Haiku 4.5, Structured Outputs), Vitest und Testing Library, Hosting als statische Seite auf All-Inkl (Apache, .htaccess für die Routen).
