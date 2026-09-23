@@ -1,4 +1,5 @@
-import { Link, Route, Routes } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Link, Route, Routes, useLocation } from 'react-router-dom'
 import { repository, supabase } from './lib/backend'
 import Aktionsseite from './pages/Aktionsseite'
 import Team from './pages/Team'
@@ -6,11 +7,17 @@ import Team from './pages/Team'
 export const STUDIO = 'Studio Weitblick'
 
 export default function App() {
+  const { pathname } = useLocation()
+  const aktionsseite = pathname === '/'
+  // Die Aktionsseite läuft im dunklen Studio-Look, die Team-Ansicht bleibt hell und ruhig.
+  useEffect(() => {
+    document.body.classList.toggle('studio-dunkel', aktionsseite)
+  }, [aktionsseite])
   return (
     <div className="huelle">
       <header className="kopf">
         <Link to="/" className="marke">
-          {STUDIO}
+          Studio <span>Weitblick</span>
         </Link>
         <span className="demo-hinweis">Fiktives Demo-Studio</span>
       </header>

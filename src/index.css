@@ -1,19 +1,22 @@
-/* Farben und Schriften aus Dianas Brand Guideline 2026 (Abschnitt Visual Identity). */
+/* Markenwelt des fiktiven Kunden "Studio Weitblick": Schwarz und Grün, wie im Fitnessmarkt üblich.
+   Gilt nur für diesen Prototyp, nicht für Dianas eigene Marke. */
 :root {
-  --navy: #07154a;
-  --cream: #f7f3f2;
-  --text: #2b2b2b;
-  --rose: #c98aa0;
-  --rose-soft: #e8c7d1;
-  --rose-mid: #d9a8b8;
+  --navy: #121412;
+  --cream: #f2f4ef;
+  --text: #1a1c1a;
+  --rose: #3f8f1f;
+  --rose-soft: #dff3c8;
+  --rose-mid: #9bd65a;
   --white: #ffffff;
-  --line: #e4dcdb;
+  --line: #dfe3da;
   --muted: #5d5d66;
-  --error: #a3284a;
+  --error: #b3261e;
   --ok: #2f6b4f;
 
   --radius: 6px;
-  --serif: 'Roboto Serif', Georgia, serif;
+  --serif: 'Roboto', system-ui, sans-serif;
+  --lime: #b4f03c;
+  --dark: #121412;
   --sans: 'Roboto', system-ui, -apple-system, sans-serif;
 
   color: var(--text);
@@ -39,6 +42,8 @@ h1,
 h2,
 h3 {
   font-family: var(--serif);
+  font-weight: 900;
+  letter-spacing: -0.01em;
   color: var(--navy);
   line-height: 1.15;
   margin: 0;
@@ -98,7 +103,7 @@ a {
 }
 .buehne h1 {
   font-size: clamp(2.3rem, 5.5vw, 3.8rem);
-  font-weight: 600;
+  font-weight: 900;
   letter-spacing: -0.01em;
 }
 .buehne .einleitung {
@@ -166,7 +171,7 @@ a {
   font: inherit;
   color: var(--text);
   background: var(--white);
-  border: 1px solid #cfc6c5;
+  border: 1px solid #cfd3cb;
   border-radius: var(--radius);
   padding: 11px 12px;
   width: 100%;
@@ -220,7 +225,7 @@ fieldset.feld legend {
   display: block;
   text-align: center;
   padding: 10px 8px;
-  border: 1px solid #cfc6c5;
+  border: 1px solid #cfd3cb;
   border-radius: var(--radius);
   font-size: 0.93rem;
   transition: background 0.15s, border-color 0.15s;
@@ -296,7 +301,7 @@ fieldset.feld legend {
   font-size: 0.93rem;
 }
 .meldung.fehler {
-  background: #f8e3e8;
+  background: #fbe4e2;
   color: var(--error);
 }
 .meldung.info {
@@ -437,3 +442,18 @@ fieldset.feld legend {
     animation: none !important;
   }
 }
+
+/* Studio-Look: dunkle Bühne mit Lime-Akzent */
+.studio-dunkel { background: var(--dark); color: #e9ece6; }
+.studio-dunkel .marke { color: #fff; }
+.studio-dunkel .marke span { color: var(--lime); }
+.studio-dunkel .demo-hinweis { background: transparent; color: #b9beb5; border-color: #2e332c; }
+.studio-dunkel .buehne h1 { color: #fff; text-transform: uppercase; font-size: clamp(2.3rem, 5.2vw, 3.6rem); line-height: 1.02; }
+.studio-dunkel .buehne h1 em { font-style: normal; color: var(--lime); }
+.studio-dunkel .einleitung { color: #b9beb5; }
+.studio-dunkel .vorteile .zahl { color: var(--lime); }
+.studio-dunkel .karte { color: var(--text); border-color: #2e332c; }
+.studio-dunkel .fuss { border-color: #2e332c; color: #9aa095; }
+.studio-dunkel .fuss a { color: #e9ece6; }
+.knopf.akzent { background: var(--lime); border-color: var(--lime); color: var(--dark); }
+.knopf.akzent:hover { background: #c6f76a; }

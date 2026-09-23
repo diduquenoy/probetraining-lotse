@@ -196,7 +196,7 @@ export default function AnfrageFormular({
         </div>
       )}
 
-      <button type="submit" className="knopf" disabled={sendet}>
+      <button type="submit" className="knopf akzent" disabled={sendet}>
         {sendet ? 'Wird gesendet …' : 'Probetraining anfragen'}
       </button>
     </form>

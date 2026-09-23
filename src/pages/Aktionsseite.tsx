@@ -8,7 +8,7 @@ export default function Aktionsseite({ repo }: { repo: LeadRepository }) {
   return (
     <main className="buehne">
       <section>
-        <h1>Dein erstes Training geht auf uns.</h1>
+        <h1>Dein erstes Training <em>geht auf uns.</em></h1>
         <p className="einleitung">
           Komm vorbei, lern das Studio kennen und finde heraus, was zu dir passt. Ohne Vertrag, ohne Druck.
         </p>
