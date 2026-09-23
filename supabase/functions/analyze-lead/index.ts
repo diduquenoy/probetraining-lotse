@@ -24,6 +24,7 @@ function antwort(body: Record<string, unknown>, status = 200) {
 const anthropic = new Anthropic({ apiKey: Deno.env.get('ANTHROPIC_API_KEY'), maxRetries: 2, timeout: 30_000 })
 
 async function analysieren(text: string) {
+  if (!Deno.env.get('ANTHROPIC_API_KEY')) throw new Error('API-Schlüssel für die KI fehlt')
   const res = await anthropic.messages.create({
     model: MODELL,
     max_tokens: 1024,
