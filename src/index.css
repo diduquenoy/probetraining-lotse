@@ -570,3 +570,13 @@ fieldset.feld legend {
 
 .knopf { text-decoration: none; display: inline-block; }
 html.studio-dunkel { background: var(--dark); }
+
+/* Kopfzeile der Aktionsseite: Navigation und CTA */
+.kopf { gap: 16px 28px; flex-wrap: wrap; }
+.kopf .marke { margin-right: auto; }
+.kopf-nav { display: none; gap: 26px; }
+.kopf-nav a { color: #cfd3cb; text-decoration: none; font-size: 0.93rem; }
+.kopf-nav a:hover { color: #fff; }
+.kopf-cta { padding: 10px 18px; font-size: 0.9rem; display: none; }
+.kopf-cta.pill.lime { background: #c7ed3a; color: #101110; border-radius: 999px; text-decoration: none; }
+@media (min-width: 960px) { .kopf-nav, .kopf-cta { display: inline-flex; } }

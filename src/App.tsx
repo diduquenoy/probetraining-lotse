@@ -36,7 +36,19 @@ export default function App() {
         <Link to="/" className="marke">
           Studio <span>Weitblick</span>
         </Link>
+        {aktionsseite && (
+          <nav className="kopf-nav" aria-label="Seitenbereiche">
+            <a href="#erwartung">Was dich erwartet</a>
+            <a href="#ablauf">Ablauf</a>
+            <a href="#faq">Fragen</a>
+          </nav>
+        )}
         <span className="demo-hinweis">Fiktives Demo-Studio</span>
+        {aktionsseite && (
+          <a href="#anfrage" className="pill lime kopf-cta">
+            Probetraining anfragen <span aria-hidden="true">→</span>
+          </a>
+        )}
       </header>
       <Routes>
         <Route path="/" element={<Aktionsseite repo={repository} />} />

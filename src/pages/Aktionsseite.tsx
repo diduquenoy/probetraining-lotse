@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import '@fontsource/barlow-condensed/800.css'
+import './landing.css'
 import AnfrageFormular from '../components/AnfrageFormular'
 import type { Einreichung, LeadRepository } from '../lib/repository'
 
@@ -11,8 +13,8 @@ const ERWARTUNG = [
 ] as const
 
 const ABLAUF = [
-  ['Anfragen', 'Sag uns kurz, was du willst und wann du Zeit hast.'],
-  ['Termin finden', 'Wir melden uns innerhalb von zwei Werktagen.'],
+  ['Anfrage stellen', 'Kurzes Formular: dein Ziel und wann du Zeit hast.'],
+  ['Termin finden', 'Wir melden uns innerhalb von zwei Werktagen mit einem Vorschlag.'],
   ['Loslegen', 'Eine Stunde Training, nur für dich.'],
 ] as const
 
@@ -64,6 +66,22 @@ const FAQ = [
   ],
 ] as const
 
+const bild = (datei: string) => `${import.meta.env.BASE_URL}bilder/${datei}`
+
+/** Kleine Linien-Icons für den Vertrauensblock, bewusst ohne Icon-Bibliothek. */
+function Icon({ name }: { name: 'antwort' | 'schloss' | 'hand' }) {
+  const pfade = {
+    antwort: 'M4 5h16v11H9l-5 4V5z M8 10h8 M8 13h5',
+    schloss: 'M6 11h12v9H6z M9 11V8a3 3 0 0 1 6 0v3 M12 15v2',
+    hand: 'M8 13V6.5a1.5 1.5 0 0 1 3 0V12 M11 11V5.5a1.5 1.5 0 0 1 3 0V12 M14 12V7.5a1.5 1.5 0 0 1 3 0V15a5 5 0 0 1-5 5h-1a5 5 0 0 1-4.3-2.5L5 13.3a1.5 1.5 0 0 1 2.6-1.5L8 12.5',
+  }
+  return (
+    <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d={pfade[name]} />
+    </svg>
+  )
+}
+
 export default function Aktionsseite({ repo }: { repo: LeadRepository }) {
   const [ergebnis, setErgebnis] = useState<Extract<Einreichung, { gespeichert: true }> | null>(null)
   const dankeRef = useRef<HTMLHeadingElement>(null)
@@ -74,31 +92,54 @@ export default function Aktionsseite({ repo }: { repo: LeadRepository }) {
   }, [ergebnis])
 
   return (
-    <main id="inhalt">
-      <section className="hero-band" aria-labelledby="h-hero">
-        <div className="hero-text">
+    <main id="inhalt" className="lp">
+      <section className="lp-hero" aria-labelledby="h-hero">
+        <div className="lp-hero-text">
+          <p className="lp-tag">Fitness · Gesundheit · Mehr Energie im Alltag</p>
           <h1 id="h-hero">
-            <span className="hero-kicker">Kostenloses Probetraining</span>
-            Dein erstes Training <em>geht auf uns.</em>
+            <span className="lp-kicker">Kostenloses Probetraining</span>
+            <span className="lp-gross">
+              Dein Training.
+              <br />
+              Dein Tempo.
+            </span>
           </h1>
-          <p className="einleitung">Lern das Studio kennen. Ohne Vertrag, ohne Druck.</p>
-          <a href="#anfrage" className="knopf akzent">
-            Probetraining anfragen <span aria-hidden="true">→</span>
+          <p className="lp-lede">
+            Dein erstes Training geht auf uns: Lern das Studio kennen, ohne Vertrag und ohne Druck.
+          </p>
+          <a href="#anfrage" className="pill lime">
+            Kostenloses Probetraining anfragen <span aria-hidden="true">→</span>
           </a>
-          <ul className="fakten">
+          <ul className="lp-fakten">
             <li>Kostenlos</li>
             <li>Ohne Vertrag</li>
-            <li>60 Minuten</li>
+            <li>60 Minuten nur für dich</li>
           </ul>
         </div>
+        <picture className="lp-hero-bild">
+          <source media="(max-width: 720px)" srcSet={bild('training-hero-mobil.webp')} type="image/webp" />
+          <source srcSet={bild('training-hero.webp')} type="image/webp" />
+          <img
+            src={bild('training-hero.jpg')}
+            width={1536}
+            height={1024}
+            fetchPriority="high"
+            alt="Frau mit Brille und geflochtenen Zöpfen im dunklen Trainingsbereich des Studios"
+          />
+        </picture>
       </section>
 
-      <section className="abschnitt raster" aria-labelledby="h-erwartung">
-        <h2 id="h-erwartung">Was dich erwartet</h2>
-        <ol className="nummern vier">
+      <section className="lp-abschnitt" id="erwartung" aria-labelledby="h-erwartung">
+        <div className="lp-kopfzeile">
+          <h2 id="h-erwartung">Was dich erwartet.</h2>
+          <p className="lp-tag">Persönlich. Ehrlich. Ohne Druck.</p>
+        </div>
+        <ol className="lp-spalten vier">
           {ERWARTUNG.map(([titel, text], i) => (
             <li key={titel}>
-              <span className="nr" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+              <span className="lp-nr" aria-hidden="true">
+                {String(i + 1).padStart(2, '0')}
+              </span>
               <h3>{titel}</h3>
               <p>{text}</p>
             </li>
@@ -106,21 +147,28 @@ export default function Aktionsseite({ repo }: { repo: LeadRepository }) {
         </ol>
       </section>
 
-      <section className="abschnitt" aria-labelledby="h-ablauf">
-        <h2 id="h-ablauf">So läuft dein Probetraining</h2>
-        <ol className="nummern drei">
+      <section className="lp-abschnitt" id="ablauf" aria-labelledby="h-ablauf">
+        <div className="lp-kopfzeile">
+          <h2 id="h-ablauf">So läuft dein Probetraining ab.</h2>
+          <p className="lp-tag">Einfach. Unkompliziert. Persönlich.</p>
+        </div>
+        <ol className="lp-schritte">
           {ABLAUF.map(([titel, text], i) => (
             <li key={titel}>
-              <span className="nr" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
-              <h3>{titel}</h3>
-              <p>{text}</p>
+              <span className="lp-nr" aria-hidden="true">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <div>
+                <h3>{titel}</h3>
+                <p>{text}</p>
+              </div>
             </li>
           ))}
         </ol>
       </section>
 
-      <div className="anfrage-bereich">
-        <section className="karte formular-karte" id="anfrage" aria-label="Probetraining anfragen">
+      <div className="lp-anfrage">
+        <section className="lp-formular" id="anfrage" aria-label="Probetraining anfragen">
           {ergebnis ? (
             <div className="erfolg">
               <div className="haken" aria-hidden="true">
@@ -136,7 +184,7 @@ export default function Aktionsseite({ repo }: { repo: LeadRepository }) {
               <p>
                 Bis dahin findest du in den <a href="#faq">häufigen Fragen</a>, was du mitbringen solltest.
               </p>
-              <button type="button" className="knopf zweitrangig" onClick={() => setErgebnis(null)}>
+              <button type="button" className="pill dunkel" onClick={() => setErgebnis(null)}>
                 Weitere Anfrage senden
               </button>
             </div>
@@ -144,25 +192,41 @@ export default function Aktionsseite({ repo }: { repo: LeadRepository }) {
             <AnfrageFormular repo={repo} onErfolg={setErgebnis} />
           )}
         </section>
-        <img
-          className="anfrage-bild"
-          src={`${import.meta.env.BASE_URL}bilder/probetraining.webp`}
-          width={720}
-          height={900}
-          loading="lazy"
-          decoding="async"
-          alt="Trainierende im hellen Funktionsbereich des Studios, mit Kettlebells und Kunstrasen"
-        />
+        <figure className="lp-motivation">
+          <picture>
+            <source srcSet={bild('probetraining.webp')} type="image/webp" />
+            <img
+              src={bild('probetraining.jpg')}
+              width={720}
+              height={900}
+              loading="lazy"
+              decoding="async"
+              alt="Trainierende im hellen Funktionsbereich des Studios, mit Kettlebells und Kunstrasen"
+            />
+          </picture>
+          <figcaption>
+            <p className="lp-motivation-titel">Dein erster Schritt muss kein großer sein.</p>
+            <ul className="lp-check">
+              <li>Unverbindlich und kostenlos</li>
+              <li>Persönliche Begleitung statt Standardprogramm</li>
+              <li>Ehrliche Antworten auf all deine Fragen</li>
+            </ul>
+          </figcaption>
+        </figure>
       </div>
 
-      <section className="abschnitt" aria-labelledby="h-vertrauen">
-        <h2 id="h-vertrauen" className="leise">Darauf kannst du dich verlassen</h2>
-        <dl className="versprechen">
+      <section className="lp-vertrauen" aria-labelledby="h-vertrauen">
+        <h2 id="h-vertrauen" className="visuell-versteckt">
+          Darauf kannst du dich verlassen
+        </h2>
+        <dl>
           <div>
+            <Icon name="antwort" />
             <dt>Echte Antworten</dt>
             <dd>Ein Mensch aus dem Team antwortet dir. Eine KI hilft nur beim Vorbereiten.</dd>
           </div>
           <div>
+            <Icon name="schloss" />
             <dt>Datenschutz</dt>
             <dd>
               Deine Angaben nutzen wir nur für dein Probetraining. Mehr in der{' '}
@@ -170,15 +234,18 @@ export default function Aktionsseite({ repo }: { repo: LeadRepository }) {
             </dd>
           </div>
           <div>
+            <Icon name="hand" />
             <dt>Ohne Verkaufsdruck</dt>
             <dd>Es geht um dein Ziel, nicht um einen Vertrag.</dd>
           </div>
         </dl>
       </section>
 
-      <section className="abschnitt" id="faq" aria-labelledby="h-faq">
-        <h2 id="h-faq">Häufige Fragen</h2>
-        <div className="faq">
+      <section className="lp-abschnitt" id="faq" aria-labelledby="h-faq">
+        <div className="lp-kopfzeile">
+          <h2 id="h-faq">Häufige Fragen.</h2>
+        </div>
+        <div className="lp-faq">
           {FAQ.map(([frage, antwort]) => (
             <details key={frage}>
               <summary>{frage}</summary>
@@ -188,11 +255,18 @@ export default function Aktionsseite({ repo }: { repo: LeadRepository }) {
         </div>
       </section>
 
-      <section className="abschluss" aria-labelledby="h-abschluss">
-        <h2 id="h-abschluss">Bereit für deine erste Stunde?</h2>
-        <a href="#anfrage" className="knopf akzent">
-          Probetraining anfragen <span aria-hidden="true">→</span>
-        </a>
+      <section className="lp-abschluss" aria-labelledby="h-abschluss">
+        <div>
+          <h2 id="h-abschluss">
+            Deine erste
+            <br />
+            Stunde wartet.
+          </h2>
+          <p>Starte mit deinem kostenlosen Probetraining und erlebe Studio Weitblick selbst.</p>
+          <a href="#anfrage" className="pill lime">
+            Probetraining anfragen <span aria-hidden="true">→</span>
+          </a>
+        </div>
       </section>
     </main>
   )
