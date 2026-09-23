@@ -1,8 +1,12 @@
+project_id = "mwqbqwccxwzbfpcjmzav"
+
 [functions.analyze-lead]
 # Die Funktion prüft selbst, wer sie aufrufen darf (Besucher: nur frische eigene Anfrage einmal,
 # Team: angemeldete Session). So funktioniert sie mit alten anon-Keys und neuen Publishable Keys.
 verify_jwt = false
 
 [auth]
+site_url = "https://diana-duquenoy.com/lotse/"
+additional_redirect_urls = ["https://diana-duquenoy.com/lotse/team", "http://localhost:5173/lotse/team"]
 # Nur eingeladene Team-Mitglieder, keine Selbstregistrierung.
 enable_signup = false

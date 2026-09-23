@@ -34,7 +34,7 @@ function Anmeldung({ supabase }: { supabase: SupabaseClient }) {
     const { error } = await supabase.auth.signInWithOtp({
       email,
       // Nur bereits angelegte Team-Mitglieder dürfen sich anmelden.
-      options: { shouldCreateUser: false, emailRedirectTo: `${window.location.origin}/team` },
+      options: { shouldCreateUser: false, emailRedirectTo: `${window.location.origin}${import.meta.env.BASE_URL}team` },
     })
     setZustand(error ? 'fehler' : 'gesendet')
   }

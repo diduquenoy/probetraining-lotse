@@ -3,6 +3,8 @@ import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
+  // Liegt unter diana-duquenoy.com/lotse/
+  base: '/lotse/',
   plugins: [react()],
   test: {
     environment: 'jsdom',
