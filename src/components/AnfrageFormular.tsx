@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from 'react'
+import { Link } from 'react-router-dom'
 import { pruefeAnfrage, ZEITFENSTER, ZIELE, type AnfrageEingabe, type Feldfehler } from '../lib/lead'
 import { anfrageEinreichen, type Einreichung, type LeadRepository } from '../lib/repository'
 
@@ -64,8 +65,12 @@ export default function AnfrageFormular({
   }
 
   return (
-    <form className="formular" onSubmit={absenden} noValidate>
+    <form className="formular" onSubmit={absenden} noValidate aria-busy={sendet}>
       <h2>Probetraining anfragen</h2>
+      <p className="formular-hinweis">
+        Felder ohne „(optional)“ brauchen wir, damit wir dir antworten können. Demo-Studio: Erfundene Angaben sind
+        völlig in Ordnung.
+      </p>
 
       <div className="feld" data-fehler={!!fehler.name}>
         <label htmlFor="feld-name">Name</label>
@@ -157,10 +162,14 @@ export default function AnfrageFormular({
           id="feld-nachricht"
           value={werte.nachricht}
           onChange={(e) => setze('nachricht', e.target.value)}
-          placeholder="z. B. Knieprobleme, lange Pause, Fragen zum Kursplan"
+          placeholder="z. B. lange Pause, Wunschtag, Fragen zum Kursplan"
+          maxLength={600}
           aria-invalid={!!fehler.nachricht}
           aria-describedby={fehler.nachricht ? 'fehler-nachricht' : undefined}
         />
+        <span className="zaehler" aria-live="polite">
+          {(werte.nachricht ?? '').length} / 600 Zeichen. Gesundheitsangaben besprechen wir bitte beim Probetraining.
+        </span>
         {fehler.nachricht && <span id="fehler-nachricht" className="fehlertext">{fehler.nachricht}</span>}
       </div>
 
@@ -176,11 +185,13 @@ export default function AnfrageFormular({
             type="checkbox"
             checked={werte.einwilligung as boolean}
             onChange={(e) => setze('einwilligung', e.target.checked as true)}
+            aria-invalid={!!fehler.einwilligung}
             aria-describedby={fehler.einwilligung ? 'fehler-einwilligung' : undefined}
           />
           <span>
             Ich bin einverstanden, dass das Studio mich zu meiner Anfrage kontaktiert. Ein KI-Assistent bereitet die
-            Antwort vor, ein Mensch prüft und verschickt sie.
+            Antwort vor, ein Mensch prüft und verschickt sie. Mehr dazu im{' '}
+            <Link to="/datenschutz">Datenschutzhinweis</Link>.
           </span>
         </label>
         {fehler.einwilligung && (
