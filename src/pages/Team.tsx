@@ -1,5 +1,6 @@
 import type { Session, SupabaseClient } from '@supabase/supabase-js'
 import { useCallback, useEffect, useState, type FormEvent } from 'react'
+import { useLocation } from 'react-router-dom'
 import LeadKarte from '../components/LeadKarte'
 import { STATUS, STATUS_LABEL, type Lead, type Status } from '../lib/lead'
 import type { LeadRepository } from '../lib/repository'
@@ -26,6 +27,7 @@ export default function Team({ repo, supabase }: { repo: LeadRepository; supabas
 }
 
 function Anmeldung({ supabase }: { supabase: SupabaseClient }) {
+  const hinweis = (useLocation().state as { hinweis?: string } | null)?.hinweis
   const [email, setEmail] = useState('')
   const [zustand, setZustand] = useState<'offen' | 'gesendet' | 'fehler'>('offen')
 
@@ -44,6 +46,11 @@ function Anmeldung({ supabase }: { supabase: SupabaseClient }) {
       <div className="karte" style={{ maxWidth: 440 }}>
         <form className="formular" onSubmit={senden}>
           <h1 style={{ fontSize: '1.6rem' }}>Team-Anmeldung</h1>
+          {hinweis && zustand === 'offen' && (
+            <p className="meldung info" role="status">
+              {hinweis}
+            </p>
+          )}
           {zustand === 'gesendet' ? (
             <p className="meldung info">Schau in dein Postfach, der Anmeldelink ist unterwegs.</p>
           ) : (
