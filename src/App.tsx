@@ -26,7 +26,7 @@ export default function App() {
         <Route path="/team" element={<Team repo={repository} supabase={supabase} />} />
       </Routes>
       <footer className="fuss">
-        <span>Prototyp von Diana Duquenoy. Studio, Angebot und Personen sind erfunden.</span>
+        <span>Prototyp von Diana Duquenoy. Studio und Angebot sind erfunden. Fotos: echte Aufnahmen, Hintergrund mit KI bearbeitet.</span>
         <Link to="/team">Team-Ansicht</Link>
       </footer>
     </div>
