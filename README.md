@@ -75,3 +75,40 @@ Mit Supabase: `.env.example` nach `.env.local` kopieren und URL und Key eintrage
 ## Stack
 
 React 19, TypeScript, Vite, React Router, Zod, Supabase (Postgres, Row Level Security, Auth, Edge Functions), Claude API (Haiku 4.5, Structured Outputs), Vitest und Testing Library, Hosting als statische Seite auf All-Inkl (Apache, .htaccess für die Routen).
+
+## SEO und GEO (Demo, bewusst `noindex`)
+
+Studio Weitblick ist fiktiv. Die Seite ist deshalb auf `noindex, nofollow` gesetzt, damit kein erfundenes Studio in Suchmaschinen oder KI-Antworten auftaucht. Umgesetzt ist trotzdem alles, was eine echte Aktionsseite braucht:
+
+- Die Startseite wird beim Build zu statischem HTML vorgerendert (`scripts/prerender.mjs`). Crawler, KI-Abrufe und Link-Vorschauen sehen Headline, Abschnitte, FAQ und den Demo-Hinweis ohne JavaScript.
+- Title, Meta-Description, Open Graph mit eigenem Vorschaubild, Favicon, schlankes `WebPage`-JSON-LD mit Urheberin.
+- Eine H1 mit Themen-Kicker, H2 je Abschnitt, FAQ als natives `<details>/<summary>` (ohne FAQPage-Schema: Google zeigt diese Rich Results seit Mai 2026 nicht mehr).
+- Keyword-Basis: [`docs/keyword-recherche.md`](docs/keyword-recherche.md) (Google Trends und echte Nutzerfragen, Stand 23.09.2026).
+
+### So würde ich es für einen echten Kunden auszeichnen
+
+Nur mit echten Daten, die sichtbar auf der Seite stehen. Für das fiktive Studio bewusst **nicht** ausgeliefert, weil Adresse, Telefon und Öffnungszeiten erfunden wären.
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "ExerciseGym",
+  "name": "[Name des Studios]",
+  "url": "https://[domain]/probetraining/",
+  "image": "https://[domain]/bilder/studio.jpg",
+  "telephone": "[Telefon]",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "[Straße Hausnummer]",
+    "postalCode": "[PLZ]",
+    "addressLocality": "[Ort]",
+    "addressCountry": "DE"
+  },
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "[06:00]", "closes": "[23:00]" }
+  ],
+  "sameAs": ["[Google-Unternehmensprofil]", "[Instagram des Studios]"]
+}
+```
+
+Dazu für einen echten Kunden: Title „Kostenloses Probetraining in [Ort] | [Studio]", `index, follow`, selbstreferenzierendes Canonical und ein gepflegtes Google-Unternehmensprofil (für generische Suchen zeigt Google eine lokale Kartenbox vor den normalen Treffern).

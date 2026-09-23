@@ -33,6 +33,18 @@ const FAQ = [
     'Sprich vorher bitte mit deiner Ärztin oder deinem Arzt, eine medizinische Einschätzung können wir nicht geben. Erzähl uns beim Probetraining, was wir wissen sollten, dann stellen wir uns darauf ein.',
   ],
   [
+    'Muss ich einen Termin vereinbaren oder kann ich spontan kommen?',
+    'Bitte frag vorher an. So kann sich jemand aus unserem Trainerteam eine ganze Stunde Zeit für dich nehmen.',
+  ],
+  [
+    'Ab welchem Alter kann ich mitmachen?',
+    '[Mindestalter laut Studioregeln]. Wenn du noch nicht volljährig bist: [Regel für Minderjährige, z. B. Einverständnis der Eltern].',
+  ],
+  [
+    'Darf ich jemanden mitbringen?',
+    '[Regel des Studios zu Begleitpersonen]. Schreib es einfach in deine Nachricht, dann planen wir es mit ein.',
+  ],
+  [
     'Wann meldet ihr euch?',
     'Innerhalb von zwei Werktagen. Schau auch in deinen Spam-Ordner, falls nichts ankommt. Wenn du deine Telefonnummer angibst, geht es oft schneller.',
   ],
