@@ -1,0 +1,439 @@
+/* Farben und Schriften aus Dianas Brand Guideline 2026 (Abschnitt Visual Identity). */
+:root {
+  --navy: #07154a;
+  --cream: #f7f3f2;
+  --text: #2b2b2b;
+  --rose: #c98aa0;
+  --rose-soft: #e8c7d1;
+  --rose-mid: #d9a8b8;
+  --white: #ffffff;
+  --line: #e4dcdb;
+  --muted: #5d5d66;
+  --error: #a3284a;
+  --ok: #2f6b4f;
+
+  --radius: 6px;
+  --serif: 'Roboto Serif', Georgia, serif;
+  --sans: 'Roboto', system-ui, -apple-system, sans-serif;
+
+  color: var(--text);
+  background: var(--cream);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--serif);
+  color: var(--navy);
+  line-height: 1.15;
+  margin: 0;
+}
+
+a {
+  color: var(--navy);
+}
+
+:focus-visible {
+  outline: 3px solid var(--rose);
+  outline-offset: 2px;
+}
+
+.huelle {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Kopfzeile */
+.kopf {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 0;
+}
+.marke {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: var(--navy);
+  text-decoration: none;
+}
+.demo-hinweis {
+  font-size: 0.8rem;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 4px 10px;
+  background: var(--white);
+}
+
+/* Aktionsseite */
+.buehne {
+  display: grid;
+  gap: 48px;
+  padding: 40px 0 96px;
+  align-items: start;
+}
+@media (min-width: 900px) {
+  .buehne {
+    grid-template-columns: 1fr 460px;
+    gap: 72px;
+    padding-top: 72px;
+  }
+}
+.buehne h1 {
+  font-size: clamp(2.3rem, 5.5vw, 3.8rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.buehne .einleitung {
+  font-size: 1.15rem;
+  color: var(--muted);
+  max-width: 34ch;
+  margin: 20px 0 36px;
+}
+.vorteile {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+}
+.vorteile li {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  align-items: start;
+  gap: 12px;
+}
+.vorteile .zahl {
+  font-family: var(--serif);
+  color: var(--rose);
+  font-weight: 600;
+}
+
+/* Karten */
+.karte {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 28px;
+}
+@media (max-width: 480px) {
+  .karte {
+    padding: 22px 18px;
+  }
+}
+
+/* Formular */
+.formular {
+  display: grid;
+  gap: 20px;
+}
+.formular h2 {
+  font-size: 1.5rem;
+}
+.feld {
+  display: grid;
+  gap: 6px;
+}
+.feld label,
+.feld legend {
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+.feld .optional {
+  color: var(--muted);
+  font-weight: 400;
+}
+.feld input,
+.feld select,
+.feld textarea {
+  font: inherit;
+  color: var(--text);
+  background: var(--white);
+  border: 1px solid #cfc6c5;
+  border-radius: var(--radius);
+  padding: 11px 12px;
+  width: 100%;
+}
+.feld textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+.feld input:focus,
+.feld select:focus,
+.feld textarea:focus {
+  border-color: var(--navy);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--rose-soft);
+}
+.feld[data-fehler='true'] input,
+.feld[data-fehler='true'] select {
+  border-color: var(--error);
+}
+.fehlertext {
+  color: var(--error);
+  font-size: 0.88rem;
+}
+fieldset.feld {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+fieldset.feld legend {
+  padding: 0;
+  margin-bottom: 6px;
+}
+
+/* Zeitfenster als Auswahlkacheln */
+.kacheln {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.kachel {
+  position: relative;
+}
+.kachel input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  cursor: pointer;
+}
+.kachel span {
+  display: block;
+  text-align: center;
+  padding: 10px 8px;
+  border: 1px solid #cfc6c5;
+  border-radius: var(--radius);
+  font-size: 0.93rem;
+  transition: background 0.15s, border-color 0.15s;
+}
+.kachel input:checked + span {
+  background: var(--rose-soft);
+  border-color: var(--rose);
+  color: var(--navy);
+  font-weight: 500;
+}
+.kachel input:focus-visible + span {
+  outline: 3px solid var(--rose);
+  outline-offset: 2px;
+}
+
+.einwilligung {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 10px;
+  align-items: start;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+.einwilligung input {
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
+  accent-color: var(--navy);
+}
+
+.honigtopf {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Buttons */
+.knopf {
+  font: inherit;
+  font-weight: 500;
+  border: 1px solid var(--navy);
+  background: var(--navy);
+  color: var(--white);
+  border-radius: var(--radius);
+  padding: 13px 20px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.knopf:hover {
+  background: #0d2170;
+}
+.knopf:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+.knopf.zweitrangig {
+  background: var(--white);
+  color: var(--navy);
+}
+.knopf.zweitrangig:hover {
+  background: var(--rose-soft);
+}
+.knopf.klein {
+  padding: 7px 12px;
+  font-size: 0.88rem;
+}
+
+.meldung {
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  font-size: 0.93rem;
+}
+.meldung.fehler {
+  background: #f8e3e8;
+  color: var(--error);
+}
+.meldung.info {
+  background: var(--rose-soft);
+  color: var(--navy);
+}
+
+/* Erfolg */
+.erfolg {
+  display: grid;
+  gap: 14px;
+}
+.erfolg .haken {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--rose-soft);
+  display: grid;
+  place-items: center;
+  color: var(--navy);
+  font-size: 1.3rem;
+}
+
+.fuss {
+  border-top: 1px solid var(--line);
+  padding: 24px 0 40px;
+  font-size: 0.85rem;
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  justify-content: space-between;
+}
+
+/* Team-Ansicht */
+.team {
+  padding: 32px 0 80px;
+  display: grid;
+  gap: 24px;
+}
+.team-kopf {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 12px;
+}
+.team-kopf h1 {
+  font-size: 2rem;
+}
+.filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.filter button[aria-pressed='true'] {
+  background: var(--navy);
+  color: var(--white);
+}
+.liste {
+  display: grid;
+  gap: 16px;
+}
+.lead {
+  display: grid;
+  gap: 16px;
+}
+.lead-kopf {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: start;
+  gap: 8px 16px;
+}
+.lead-kopf h2 {
+  font-size: 1.25rem;
+}
+.lead-meta {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+.etiketten {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.etikett {
+  font-size: 0.8rem;
+  border-radius: var(--radius);
+  padding: 3px 8px;
+  background: var(--cream);
+  border: 1px solid var(--line);
+}
+.etikett.hoch {
+  background: var(--rose-soft);
+  border-color: var(--rose);
+  color: var(--navy);
+  font-weight: 500;
+}
+.ki {
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+  display: grid;
+  gap: 10px;
+}
+.ki-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--rose);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.entwurf {
+  background: var(--cream);
+  border-radius: var(--radius);
+  padding: 14px;
+  white-space: pre-wrap;
+  font-size: 0.95rem;
+}
+.status-wahl {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.status-wahl button[aria-pressed='true'] {
+  background: var(--navy);
+  color: var(--white);
+}
+.leer {
+  text-align: center;
+  color: var(--muted);
+  padding: 48px 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

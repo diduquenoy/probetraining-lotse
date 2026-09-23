@@ -1,0 +1,8 @@
+[functions.analyze-lead]
+# Die Funktion prüft selbst, wer sie aufrufen darf (Besucher: nur frische eigene Anfrage einmal,
+# Team: angemeldete Session). So funktioniert sie mit alten anon-Keys und neuen Publishable Keys.
+verify_jwt = false
+
+[auth]
+# Nur eingeladene Team-Mitglieder, keine Selbstregistrierung.
+enable_signup = false
