@@ -83,7 +83,7 @@ Studio Weitblick ist fiktiv. Die Seite ist deshalb auf `noindex, nofollow` geset
 - Die Startseite wird beim Build zu statischem HTML vorgerendert (`scripts/prerender.mjs`). Crawler, KI-Abrufe und Link-Vorschauen sehen Headline, Abschnitte, FAQ und den Demo-Hinweis ohne JavaScript.
 - Title, Meta-Description, Open Graph mit eigenem Vorschaubild, Favicon, schlankes `WebPage`-JSON-LD mit Urheberin.
 - Eine H1 mit Themen-Kicker, H2 je Abschnitt, FAQ als natives `<details>/<summary>` (ohne FAQPage-Schema: Google zeigt diese Rich Results seit Mai 2026 nicht mehr).
-- Keyword-Basis: [`docs/keyword-recherche.md`](docs/keyword-recherche.md) (Google Trends und echte Nutzerfragen, Stand 23.09.2026).
+- Keyword-Basis: [`docs/keyword-recherche.md`](docs/keyword-recherche.md) (Sistrix-Suchvolumen, Google Trends und echte Nutzerfragen, Stand 23.09.2026). Hauptbegriffe: „probetraining" (1.650/Monat), „fitnessstudio ohne vertrag" (250), „probetraining fitnessstudio" (200), „kostenloses probetraining" (90).
 
 ### So würde ich es für einen echten Kunden auszeichnen
 

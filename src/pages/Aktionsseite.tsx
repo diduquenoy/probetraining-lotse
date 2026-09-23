@@ -37,6 +37,10 @@ const FAQ = [
     'Bitte frag vorher an. So kann sich jemand aus unserem Trainerteam eine ganze Stunde Zeit für dich nehmen.',
   ],
   [
+    'Wie oft kann ich ein Probetraining machen?',
+    '[Regel des Studios, z. B. einmal pro Person]. Wenn du danach noch unsicher bist, sprich uns einfach an.',
+  ],
+  [
     'Ab welchem Alter kann ich mitmachen?',
     '[Mindestalter laut Studioregeln]. Wenn du noch nicht volljährig bist: [Regel für Minderjährige, z. B. Einverständnis der Eltern].',
   ],
