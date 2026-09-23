@@ -4,10 +4,16 @@ import AnfrageFormular from '../components/AnfrageFormular'
 import type { Einreichung, LeadRepository } from '../lib/repository'
 
 const ERWARTUNG = [
-  ['Dein Ziel zuerst', 'Wir sprechen darüber, was du erreichen willst, und richten die Stunde danach aus.'],
-  ['Eine Stunde für dich', 'Die ganze Stunde gehört dir, mit jemandem aus unserem Trainerteam an deiner Seite.'],
-  ['Studio und Geräte kennenlernen', 'Du probierst aus, was zu deinem Ziel passt, und lernst dabei, wie die Geräte richtig eingestellt werden.'],
-  ['Zeit für deine Fragen', 'Frag ruhig alles, was dir durch den Kopf geht, auch das, was dir vielleicht banal vorkommt.'],
+  ['Dein Ziel zuerst', 'Die Stunde richtet sich nach dem, was du erreichen willst.'],
+  ['Eine Stunde für dich', 'Mit jemandem aus dem Trainerteam an deiner Seite.'],
+  ['Studio und Geräte', 'Du probierst aus, was zu deinem Ziel passt.'],
+  ['Deine Fragen', 'Frag alles, auch das, was dir banal vorkommt.'],
+] as const
+
+const ABLAUF = [
+  ['Anfragen', 'Sag uns kurz, was du willst und wann du Zeit hast.'],
+  ['Termin finden', 'Wir melden uns innerhalb von zwei Werktagen.'],
+  ['Loslegen', 'Eine Stunde Training, nur für dich.'],
 ] as const
 
 const FAQ = [
@@ -75,47 +81,45 @@ export default function Aktionsseite({ repo }: { repo: LeadRepository }) {
             <span className="hero-kicker">Kostenloses Probetraining</span>
             Dein erstes Training <em>geht auf uns.</em>
           </h1>
-          <p className="einleitung">
-            Komm vorbei, lern das Studio kennen und finde heraus, was zu dir passt. Ohne Vertrag, ohne Druck.
-          </p>
+          <p className="einleitung">Lern das Studio kennen. Ohne Vertrag, ohne Druck.</p>
           <a href="#anfrage" className="knopf akzent">
-            Probetraining anfragen
+            Probetraining anfragen <span aria-hidden="true">→</span>
           </a>
-          <p className="vertrauenszeile">Kostenlos · Ohne Vertrag · Antwort in zwei Werktagen</p>
+          <ul className="fakten">
+            <li>Kostenlos</li>
+            <li>Ohne Vertrag</li>
+            <li>60 Minuten</li>
+          </ul>
         </div>
       </section>
 
-      <section className="abschnitt" aria-labelledby="h-erwartung">
+      <section className="abschnitt raster" aria-labelledby="h-erwartung">
         <h2 id="h-erwartung">Was dich erwartet</h2>
-        <ul className="erwartung">
-          {ERWARTUNG.map(([titel, text]) => (
+        <ol className="nummern vier">
+          {ERWARTUNG.map(([titel, text], i) => (
             <li key={titel}>
+              <span className="nr" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
               <h3>{titel}</h3>
               <p>{text}</p>
             </li>
           ))}
-        </ul>
+        </ol>
       </section>
 
-      <div className="buehne">
-        <section aria-labelledby="h-ablauf">
-          <h2 id="h-ablauf">So läuft dein Probetraining</h2>
-          <ol className="vorteile">
-            <li>
-              <span className="zahl">1</span>
-              <span>Du sagst uns kurz, was du erreichen willst und wann du Zeit hast.</span>
+      <section className="abschnitt" aria-labelledby="h-ablauf">
+        <h2 id="h-ablauf">So läuft dein Probetraining</h2>
+        <ol className="nummern drei">
+          {ABLAUF.map(([titel, text], i) => (
+            <li key={titel}>
+              <span className="nr" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+              <h3>{titel}</h3>
+              <p>{text}</p>
             </li>
-            <li>
-              <span className="zahl">2</span>
-              <span>Wir melden uns innerhalb von zwei Werktagen mit einem Terminvorschlag.</span>
-            </li>
-            <li>
-              <span className="zahl">3</span>
-              <span>Beim Probetraining nimmt sich jemand aus unserem Trainerteam eine Stunde Zeit nur für dich.</span>
-            </li>
-          </ol>
-        </section>
+          ))}
+        </ol>
+      </section>
 
+      <div className="anfrage-bereich">
         <section className="karte formular-karte" id="anfrage" aria-label="Probetraining anfragen">
           {ergebnis ? (
             <div className="erfolg">
@@ -140,11 +144,8 @@ export default function Aktionsseite({ repo }: { repo: LeadRepository }) {
             <AnfrageFormular repo={repo} onErfolg={setErgebnis} />
           )}
         </section>
-      </div>
-
-      <section className="abschnitt vertrauen" aria-labelledby="h-vertrauen">
         <img
-          className="probe-bild"
+          className="anfrage-bild"
           src={`${import.meta.env.BASE_URL}bilder/probetraining.webp`}
           width={720}
           height={900}
@@ -152,32 +153,27 @@ export default function Aktionsseite({ repo }: { repo: LeadRepository }) {
           decoding="async"
           alt="Trainierende im hellen Funktionsbereich des Studios, mit Kettlebells und Kunstrasen"
         />
-        <div>
-          <h2 id="h-vertrauen">Darauf kannst du dich verlassen</h2>
-          <dl className="versprechen">
-            <div>
-              <dt>Echte Antworten</dt>
-              <dd>
-                Ein Mensch aus unserem Team liest und beantwortet deine Anfrage. Eine KI hilft uns nur dabei, sie
-                vorzubereiten.
-              </dd>
-            </div>
-            <div>
-              <dt>Datenschutz</dt>
-              <dd>
-                Deine Angaben nutzen wir nur für deine Anfrage und dein Probetraining, alles Weitere steht in unserer{' '}
-                <Link to="/datenschutz">Datenschutzerklärung</Link>.
-              </dd>
-            </div>
-            <div>
-              <dt>Ohne Verkaufsdruck</dt>
-              <dd>
-                Jemand aus unserem Trainerteam nimmt sich Zeit für dich und orientiert sich an deinem Ziel, nicht an
-                einem Vertragsabschluss.
-              </dd>
-            </div>
-          </dl>
-        </div>
+      </div>
+
+      <section className="abschnitt" aria-labelledby="h-vertrauen">
+        <h2 id="h-vertrauen" className="leise">Darauf kannst du dich verlassen</h2>
+        <dl className="versprechen">
+          <div>
+            <dt>Echte Antworten</dt>
+            <dd>Ein Mensch aus dem Team antwortet dir. Eine KI hilft nur beim Vorbereiten.</dd>
+          </div>
+          <div>
+            <dt>Datenschutz</dt>
+            <dd>
+              Deine Angaben nutzen wir nur für dein Probetraining. Mehr in der{' '}
+              <Link to="/datenschutz">Datenschutzerklärung</Link>.
+            </dd>
+          </div>
+          <div>
+            <dt>Ohne Verkaufsdruck</dt>
+            <dd>Es geht um dein Ziel, nicht um einen Vertrag.</dd>
+          </div>
+        </dl>
       </section>
 
       <section className="abschnitt" id="faq" aria-labelledby="h-faq">
@@ -194,9 +190,8 @@ export default function Aktionsseite({ repo }: { repo: LeadRepository }) {
 
       <section className="abschluss" aria-labelledby="h-abschluss">
         <h2 id="h-abschluss">Bereit für deine erste Stunde?</h2>
-        <p>Schick uns deine Anfrage, wir melden uns innerhalb von zwei Werktagen mit einem Terminvorschlag.</p>
         <a href="#anfrage" className="knopf akzent">
-          Probetraining anfragen
+          Probetraining anfragen <span aria-hidden="true">→</span>
         </a>
       </section>
     </main>

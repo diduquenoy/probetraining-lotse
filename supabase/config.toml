@@ -10,3 +10,10 @@ site_url = "https://diana-duquenoy.com/lotse/"
 additional_redirect_urls = ["https://diana-duquenoy.com/lotse/team", "http://localhost:5173/lotse/team"]
 # Nur eingeladene Team-Mitglieder, keine Selbstregistrierung.
 enable_signup = false
+
+# Anmeldung per 6-stelligem Code statt Link (Vorlage: supabase/templates/magic_link.html).
+# Im Free-Tarif mit Supabase-Standard-Mailversand sind eigene Mailvorlagen gesperrt.
+# Erst nach Einrichtung eines eigenen SMTP-Versands aktivieren:
+# [auth.email.template.magic_link]
+# subject = "Dein Anmeldecode für Studio Weitblick"
+# content_path = "./supabase/templates/magic_link.html"
