@@ -66,7 +66,7 @@ const FAQ = [
   ],
 ] as const
 
-// Gesperrt seit 08.10.2026: Bot-Nachrichten haben das API-Guthaben aufgebraucht.
+// Gesperrt seit 08.10.2026: verdächtige Bot-Nachrichten über das Formular.
 // Zum Entsperren auf false setzen und in Supabase das Secret KI_GESPERRT entfernen.
 const ANFRAGEN_GESPERRT = true
 
@@ -196,8 +196,8 @@ export default function Aktionsseite({ repo }: { repo: LeadRepository }) {
             <div className="formular gesperrt" role="status">
               <h2>Anfragen sind gerade gesperrt</h2>
               <p>
-                Über dieses Formular kamen verdächtige Nachrichten, die sehr nach Bots aussehen. Sie haben das Guthaben
-                für die KI-Schnittstelle aufgebraucht. Deshalb habe ich die Funktion hier gesperrt.
+                Über dieses Formular kamen verdächtige Nachrichten, die sehr nach Bots aussehen. Deshalb habe ich die
+                Funktion hier vorsorglich gesperrt.
               </p>
               <p>
                 Wie der Lotse arbeitet, zeigt der{' '}
