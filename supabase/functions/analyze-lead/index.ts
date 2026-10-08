@@ -51,6 +51,8 @@ function fehlerKurz(e: unknown): string {
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response('ok', { headers: CORS })
   if (req.method !== 'POST') return antwort({ ok: false, fehler: 'Nur POST' }, 405)
+  // Notbremse: Solange das Secret KI_GESPERRT gesetzt ist, ruft die Funktion die KI nie auf.
+  if (Deno.env.get('KI_GESPERRT')) return antwort({ ok: false, fehler: 'KI-Vorbereitung ist gesperrt' }, 503)
 
   let id: unknown
   try {

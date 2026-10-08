@@ -309,6 +309,19 @@ fieldset.feld legend {
   color: var(--navy);
 }
 
+/* Gesperrt-Hinweis */
+
+.formular.gesperrt {
+  gap: 12px;
+}
+.formular.gesperrt p {
+  margin: 0;
+  line-height: 1.55;
+}
+.formular.gesperrt .gesperrt-name {
+  font-weight: 600;
+}
+
 /* Erfolg */
 .erfolg {
   display: grid;

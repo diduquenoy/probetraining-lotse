@@ -66,6 +66,10 @@ const FAQ = [
   ],
 ] as const
 
+// Gesperrt seit 08.10.2026: Bot-Nachrichten haben das API-Guthaben aufgebraucht.
+// Zum Entsperren auf false setzen und in Supabase das Secret KI_GESPERRT entfernen.
+const ANFRAGEN_GESPERRT = true
+
 const bild = (datei: string) => `${import.meta.env.BASE_URL}bilder/${datei}`
 
 /** Kleine Linien-Icons für den Vertrauensblock, bewusst ohne Icon-Bibliothek. */
@@ -187,6 +191,20 @@ export default function Aktionsseite({ repo }: { repo: LeadRepository }) {
               <button type="button" className="pill dunkel" onClick={() => setErgebnis(null)}>
                 Weitere Anfrage senden
               </button>
+            </div>
+          ) : ANFRAGEN_GESPERRT ? (
+            <div className="formular gesperrt" role="status">
+              <h2>Anfragen sind gerade gesperrt</h2>
+              <p>
+                Über dieses Formular kamen verdächtige Nachrichten, die sehr nach Bots aussehen. Sie haben das Guthaben
+                für die KI-Schnittstelle aufgebraucht. Deshalb habe ich die Funktion hier gesperrt.
+              </p>
+              <p>
+                Wie der Lotse arbeitet, zeigt der{' '}
+                <a href="https://github.com/diduquenoy/probetraining-lotse">Code auf GitHub</a>. Im Gespräch führe ich
+                ihn gern live vor.
+              </p>
+              <p className="gesperrt-name">Diana Duquenoy</p>
             </div>
           ) : (
             <AnfrageFormular repo={repo} onErfolg={setErgebnis} />
