@@ -25,3 +25,6 @@ dist-ssr
 
 .env
 .env.local
+
+# Supabase-CLI legt hier lokale Projektdaten ab, die nicht ins Repo gehören
+supabase/.temp/
